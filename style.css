@@ -1,0 +1,1528 @@
+/* =========================================
+   BASIC RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+    overflow: hidden;
+    background: #02030a;
+    color: white;
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+/* =========================================
+   MAIN APP
+========================================= */
+
+.app {
+    width: 100vw;
+    height: 100vh;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 72%)
+        minmax(330px, 28%);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   STAR FIELD
+========================================= */
+
+.star-field {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    overflow: hidden;
+}
+
+
+.star {
+    position: absolute;
+
+    width: 2px;
+    height: 2px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    opacity: 0.7;
+
+    animation:
+        starTwinkle
+        var(--twinkle-duration)
+        ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes starTwinkle {
+
+    from {
+        opacity: 0.2;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+
+}
+
+
+/* =========================================
+   LEFT SPACE SECTION
+========================================= */
+
+.space-section {
+
+    position: relative;
+
+    z-index: 2;
+
+    height: 100vh;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(20, 40, 90, 0.25),
+            transparent 55%
+        );
+
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.space-header {
+
+    position: absolute;
+
+    top: 32px;
+    left: 40px;
+    right: 40px;
+
+    z-index: 50;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+
+
+.small-title {
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    color: #7f8da8;
+
+    margin-bottom: 7px;
+
+}
+
+
+.space-header h1 {
+
+    font-size: 35px;
+
+    letter-spacing: -1px;
+
+    font-weight: 700;
+
+}
+
+
+.space-header p {
+
+    margin-top: 7px;
+
+    color: #8290a9;
+
+    font-size: 14px;
+
+}
+
+
+/* =========================================
+   LIVE STATUS
+========================================= */
+
+.live-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 13px;
+
+    border-radius: 30px;
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    background: rgba(255,255,255,0.035);
+
+    backdrop-filter: blur(10px);
+
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+
+    color: #b9c5d9;
+
+}
+
+
+.live-status span {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #48ff98;
+
+    box-shadow:
+        0 0 10px #48ff98;
+
+    animation: livePulse 1.4s infinite;
+
+}
+
+
+@keyframes livePulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+
+}
+
+
+/* =========================================
+   UNIVERSE
+========================================= */
+
+.universe {
+
+    position: absolute;
+
+    left: 50%;
+    top: 53%;
+
+    width: 850px;
+    height: 850px;
+
+    transform:
+        translate(-50%, -50%);
+
+}
+
+
+.solar-system {
+
+    position: relative;
+
+    width: 850px;
+    height: 850px;
+
+    transition:
+        transform 0.8s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+/* =========================================
+   SUN
+========================================= */
+
+.sun {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 76px;
+    height: 76px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fffbd1 0%,
+            #fff06b 18%,
+            #ffb000 48%,
+            #ff6500 72%,
+            #c62e00 100%
+        );
+
+    box-shadow:
+        0 0 25px rgba(255,160,0,0.9),
+        0 0 60px rgba(255,100,0,0.65),
+        0 0 120px rgba(255,70,0,0.3);
+
+    cursor: pointer;
+
+    z-index: 30;
+
+    transition:
+        transform 0.25s ease;
+
+}
+
+
+.sun:hover {
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.12);
+
+}
+
+
+.sun::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -16px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,130,0,0.25),
+            transparent 70%
+        );
+
+    z-index: -1;
+
+}
+
+
+/* =========================================
+   ORBITS
+========================================= */
+
+.orbit {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: var(--diameter);
+    height: var(--diameter);
+
+    margin-left:
+        calc(var(--diameter) / -2);
+
+    margin-top:
+        calc(var(--diameter) / -2);
+
+    border:
+        1px solid rgba(
+            135,
+            160,
+            200,
+            0.14
+        );
+
+    border-radius: 50%;
+
+    transform-origin: center center;
+
+    animation:
+        orbitMovement
+        var(--duration)
+        linear
+        infinite;
+
+    pointer-events: none;
+
+}
+
+
+/*
+   IMPORTANT:
+   The entire orbit container rotates.
+   The planet is attached to the top
+   of the orbit, so it physically moves
+   around the Sun.
+*/
+
+@keyframes orbitMovement {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================
+   PLANETS
+========================================= */
+
+.planet {
+
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    transform:
+        translate(-50%, -50%);
+
+    border: none;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    transition:
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+
+}
+
+
+/* Hover */
+
+.planet:hover {
+
+    filter: brightness(1.25);
+
+    box-shadow:
+        0 0 18px rgba(255,255,255,0.5);
+
+}
+
+
+/* =========================================
+   MERCURY
+========================================= */
+
+.mercury {
+
+    width: 13px;
+    height: 13px;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #d9d0bd,
+            #81776b 45%,
+            #38332f 100%
+        );
+
+}
+
+
+/* =========================================
+   VENUS
+========================================= */
+
+.venus {
+
+    width: 18px;
+    height: 18px;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #fff0b0,
+            #d79c4c 45%,
+            #8d4b20 100%
+        );
+
+}
+
+
+/* =========================================
+   EARTH
+========================================= */
+
+.earth {
+
+    width: 22px;
+    height: 22px;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #9ee8ff 0%,
+            #1675c4 35%,
+            #073d7b 68%,
+            #02172f 100%
+        );
+
+    box-shadow:
+        0 0 10px rgba(50,150,255,0.45);
+
+}
+
+
+.earth::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 9px;
+    height: 6px;
+
+    left: 4px;
+    top: 6px;
+
+    border-radius: 50%;
+
+    background: #54bd70;
+
+    transform: rotate(-20deg);
+
+}
+
+
+/* =========================================
+   MARS
+========================================= */
+
+.mars {
+
+    width: 17px;
+    height: 17px;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #ffad7d,
+            #b6492e 48%,
+            #572016 100%
+        );
+
+}
+
+
+/* =========================================
+   JUPITER
+========================================= */
+
+.jupiter {
+
+    width: 43px;
+    height: 43px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #d6b18a 0%,
+            #a96e4d 15%,
+            #e5c6a4 27%,
+            #9c6245 40%,
+            #e7c9a5 53%,
+            #9e654c 67%,
+            #d9aa82 80%,
+            #81503d 100%
+        );
+
+    box-shadow:
+        0 0 10px rgba(255,180,120,0.15);
+
+}
+
+
+/* =========================================
+   SATURN
+========================================= */
+
+.saturn {
+
+    width: 37px;
+    height: 37px;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #fff0bb,
+            #d7ae68 45%,
+            #82602e 100%
+        );
+
+}
+
+
+.saturn-ring {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 72px;
+    height: 19px;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-16deg);
+
+    border:
+        4px solid rgba(
+            214,
+            184,
+            126,
+            0.75
+        );
+
+    border-left-color:
+        rgba(214,184,126,0.35);
+
+    border-right-color:
+        rgba(214,184,126,0.35);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================
+   URANUS
+========================================= */
+
+.uranus {
+
+    width: 27px;
+    height: 27px;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #d9ffff,
+            #69cdd6 50%,
+            #277a92 100%
+        );
+
+}
+
+
+/* =========================================
+   NEPTUNE
+========================================= */
+
+.neptune {
+
+    width: 28px;
+    height: 28px;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #83c9ff,
+            #2465cf 50%,
+            #071f76 100%
+        );
+
+    box-shadow:
+        0 0 12px rgba(50,120,255,0.35);
+
+}
+
+
+/* =========================================
+   RIGHT SIDEBAR
+========================================= */
+
+.sidebar {
+
+    position: relative;
+
+    z-index: 10;
+
+    height: 100vh;
+
+    padding:
+        42px
+        34px
+        28px;
+
+    overflow-y: auto;
+
+    border-left:
+        1px solid rgba(255,255,255,0.09);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(10,15,28,0.94),
+            rgba(5,8,17,0.97)
+        );
+
+    backdrop-filter: blur(20px);
+
+}
+
+
+/* =========================================
+   SIDEBAR TOP
+========================================= */
+
+.badge {
+
+    display: inline-block;
+
+    padding: 7px 11px;
+
+    border:
+        1px solid rgba(
+            100,
+            160,
+            255,
+            0.25
+        );
+
+    border-radius: 20px;
+
+    color: #7dafff;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.sidebar h2 {
+
+    font-size: 31px;
+
+    line-height: 1.1;
+
+    letter-spacing: -1px;
+
+}
+
+
+.sidebar h2 span {
+
+    color: #6ea9ff;
+
+}
+
+
+.intro {
+
+    color: #78859b;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    margin-top: 12px;
+
+    margin-bottom: 30px;
+
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.form-group {
+
+    margin-bottom: 20px;
+
+}
+
+
+.form-group label {
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #8f9bb0;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+
+}
+
+
+.input-wrapper {
+
+    position: relative;
+
+}
+
+
+.input-wrapper input {
+
+    width: 100%;
+
+    height: 52px;
+
+    padding:
+        0 60px 0 16px;
+
+    border:
+        1px solid rgba(255,255,255,0.1);
+
+    border-radius: 11px;
+
+    outline: none;
+
+    background:
+        rgba(255,255,255,0.045);
+
+    color: white;
+
+    font-size: 16px;
+
+}
+
+
+.input-wrapper input:focus {
+
+    border-color:
+        rgba(90,150,255,0.6);
+
+    box-shadow:
+        0 0 0 3px rgba(
+            70,
+            130,
+            255,
+            0.08
+        );
+
+}
+
+
+.input-wrapper span {
+
+    position: absolute;
+
+    right: 17px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    color: #78869d;
+
+    font-size: 12px;
+
+}
+
+
+select {
+
+    width: 100%;
+
+    height: 52px;
+
+    padding: 0 16px;
+
+    border:
+        1px solid rgba(255,255,255,0.1);
+
+    border-radius: 11px;
+
+    outline: none;
+
+    background:
+        rgba(255,255,255,0.045);
+
+    color: white;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+}
+
+
+select option {
+
+    background: #0b1020;
+
+    color: white;
+
+}
+
+
+/* =========================================
+   CALCULATE BUTTON
+========================================= */
+
+.calculate-button {
+
+    width: 100%;
+
+    height: 54px;
+
+    margin-top: 5px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4c8cff,
+            #6b5cff
+        );
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 18px;
+
+    box-shadow:
+        0 10px 35px rgba(
+            60,
+            100,
+            255,
+            0.2
+        );
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.calculate-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 14px 40px rgba(
+            60,
+            100,
+            255,
+            0.32
+        );
+
+}
+
+
+.arrow {
+
+    font-size: 21px;
+
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.error-message {
+
+    min-height: 20px;
+
+    margin-top: 10px;
+
+    color: #ff7272;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================
+   RESULT CARD
+========================================= */
+
+.result-card {
+
+    margin-top: 10px;
+
+    padding: 20px;
+
+    border:
+        1px solid rgba(
+            100,
+            150,
+            255,
+            0.14
+        );
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(80,130,255,0.09),
+            rgba(255,255,255,0.025)
+        );
+
+}
+
+
+.result-label {
+
+    color: #71809a;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.result-planet {
+
+    margin-top: 6px;
+
+    color: #80adff;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+}
+
+
+.result-number {
+
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 7px;
+
+    margin-top: 5px;
+
+}
+
+
+.result-number span {
+
+    font-size: 38px;
+
+    font-weight: 700;
+
+    letter-spacing: -1.5px;
+
+}
+
+
+.result-number small {
+
+    color: #78859b;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================
+   PLANET INFO
+========================================= */
+
+.planet-info {
+
+    margin-top: 16px;
+
+    padding: 18px;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+}
+
+
+.info-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    color: #68768d;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.planet-dot {
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #61a0ff;
+
+    box-shadow:
+        0 0 10px #61a0ff;
+
+}
+
+
+.planet-info h3 {
+
+    margin-top: 12px;
+
+    font-size: 20px;
+
+}
+
+
+.gravity {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 13px;
+
+    padding-top: 12px;
+
+    border-top:
+        1px solid rgba(255,255,255,0.07);
+
+    font-size: 11px;
+
+    color: #7d899c;
+
+}
+
+
+.gravity strong {
+
+    color: white;
+
+}
+
+
+.planet-info p {
+
+    margin-top: 12px;
+
+    color: #77849a;
+
+    font-size: 11px;
+
+    line-height: 1.55;
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.sidebar-footer {
+
+    margin-top: 20px;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid rgba(255,255,255,0.07);
+
+    color: #536078;
+
+    font-size: 9px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =========================================
+   SUN POPUP
+========================================= */
+
+.popup-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 200;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(0,0,0,0.72);
+
+    backdrop-filter:
+        blur(12px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+
+}
+
+
+.popup-overlay.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+
+.sun-popup {
+
+    position: relative;
+
+    width: min(
+        420px,
+        calc(100vw - 40px)
+    );
+
+    padding: 38px 30px 30px;
+
+    border:
+        1px solid rgba(
+            255,
+            170,
+            70,
+            0.25
+        );
+
+    border-radius: 22px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(35,20,12,0.98),
+            rgba(15,10,8,0.98)
+        );
+
+    box-shadow:
+        0 30px 100px rgba(
+            0,
+            0,
+            0,
+            0.7
+        );
+
+    transform:
+        translateY(20px)
+        scale(0.95);
+
+    transition:
+        transform 0.35s ease;
+
+}
+
+
+.popup-overlay.active
+.sun-popup {
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+.popup-close {
+
+    position: absolute;
+
+    right: 17px;
+    top: 13px;
+
+    width: 32px;
+    height: 32px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.06);
+
+    color: #aaa;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+}
+
+
+.popup-icon {
+
+    font-size: 50px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.popup-title {
+
+    font-size: 28px;
+
+    font-weight: 800;
+
+    color: #ff9d43;
+
+}
+
+
+.popup-text {
+
+    margin-top: 15px;
+
+    color: #c7c0ba;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+
+.popup-text strong {
+
+    color: #ff7545;
+
+}
+
+
+.continue-button {
+
+    width: 100%;
+
+    margin-top: 25px;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff8c38,
+            #ff4d22
+        );
+
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .app {
+
+        grid-template-columns:
+            minmax(0, 65%)
+            minmax(300px, 35%);
+
+    }
+
+    .universe {
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.82);
+
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    body {
+        overflow: auto;
+    }
+
+    .app {
+
+        height: auto;
+        min-height: 100vh;
+
+        display: block;
+
+    }
+
+    .space-section {
+
+        height: 650px;
+
+    }
+
+    .sidebar {
+
+        height: auto;
+
+        min-height: 600px;
+
+        border-left: none;
+
+        border-top:
+            1px solid rgba(255,255,255,0.09);
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .space-header {
+
+        left: 20px;
+        right: 20px;
+
+        top: 20px;
+
+    }
+
+    .space-header h1 {
+
+        font-size: 27px;
+
+    }
+
+    .live-status {
+
+        display: none;
+
+    }
+
+    .universe {
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.58);
+
+    }
+
+    .sidebar {
+
+        padding: 30px 22px;
+
+    }
+
+}

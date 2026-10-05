@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Solar System Weight Explorer</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =========================
+         STAR BACKGROUND
+    ========================== -->
+    <div class="star-field" id="starField"></div>
+
+
+    <!-- =========================
+         LEFT SIDE - SOLAR SYSTEM
+    ========================== -->
+    <section class="space-section">
+
+        <div class="space-header">
+            <div>
+                <div class="small-title">NASA SPACE LAB</div>
+                <h1>Solar System</h1>
+                <p>Explore your weight on different worlds</p>
+            </div>
+
+            <div class="live-status">
+                <span></span>
+                LIVE ORBIT
+            </div>
+        </div>
+
+
+        <!-- Solar System -->
+        <div class="universe">
+
+            <div class="solar-system" id="solarSystem">
+
+                <!-- SUN -->
+                <button
+                    class="sun"
+                    id="sun"
+                    aria-label="Sun">
+                    <span class="sun-glow"></span>
+                    <span class="sun-core"></span>
+                </button>
+
+
+                <!-- MERCURY -->
+                <div
+                    class="orbit orbit-mercury"
+                    style="
+                        --diameter: 170px;
+                        --duration: 7s;
+                        animation-delay: -1s;
+                    "
+                >
+                    <button
+                        class="planet mercury"
+                        data-planet="Mercury"
+                        aria-label="Mercury">
+                    </button>
+                </div>
+
+
+                <!-- VENUS -->
+                <div
+                    class="orbit orbit-venus"
+                    style="
+                        --diameter: 250px;
+                        --duration: 11s;
+                        animation-delay: -4s;
+                    "
+                >
+                    <button
+                        class="planet venus"
+                        data-planet="Venus"
+                        aria-label="Venus">
+                    </button>
+                </div>
+
+
+                <!-- EARTH -->
+                <div
+                    class="orbit orbit-earth"
+                    style="
+                        --diameter: 340px;
+                        --duration: 15s;
+                        animation-delay: -8s;
+                    "
+                >
+                    <button
+                        class="planet earth"
+                        data-planet="Earth"
+                        aria-label="Earth">
+                    </button>
+                </div>
+
+
+                <!-- MARS -->
+                <div
+                    class="orbit orbit-mars"
+                    style="
+                        --diameter: 430px;
+                        --duration: 20s;
+                        animation-delay: -5s;
+                    "
+                >
+                    <button
+                        class="planet mars"
+                        data-planet="Mars"
+                        aria-label="Mars">
+                    </button>
+                </div>
+
+
+                <!-- JUPITER -->
+                <div
+                    class="orbit orbit-jupiter"
+                    style="
+                        --diameter: 530px;
+                        --duration: 27s;
+                        animation-delay: -17s;
+                    "
+                >
+                    <button
+                        class="planet jupiter"
+                        data-planet="Jupiter"
+                        aria-label="Jupiter">
+                    </button>
+                </div>
+
+
+                <!-- SATURN -->
+                <div
+                    class="orbit orbit-saturn"
+                    style="
+                        --diameter: 630px;
+                        --duration: 34s;
+                        animation-delay: -10s;
+                    "
+                >
+                    <button
+                        class="planet saturn"
+                        data-planet="Saturn"
+                        aria-label="Saturn">
+
+                        <span class="saturn-ring"></span>
+
+                    </button>
+                </div>
+
+
+                <!-- URANUS -->
+                <div
+                    class="orbit orbit-uranus"
+                    style="
+                        --diameter: 720px;
+                        --duration: 42s;
+                        animation-delay: -27s;
+                    "
+                >
+                    <button
+                        class="planet uranus"
+                        data-planet="Uranus"
+                        aria-label="Uranus">
+                    </button>
+                </div>
+
+
+                <!-- NEPTUNE -->
+                <div
+                    class="orbit orbit-neptune"
+                    style="
+                        --diameter: 805px;
+                        --duration: 50s;
+                        animation-delay: -35s;
+                    "
+                >
+                    <button
+                        class="planet neptune"
+                        data-planet="Neptune"
+                        aria-label="Neptune">
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         RIGHT SIDE - CALCULATOR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-top">
+
+            <div class="badge">
+                WEIGHT CALCULATOR
+            </div>
+
+            <h2>
+                How much would
+                <span>you weigh?</span>
+            </h2>
+
+            <p class="intro">
+                Enter your Earth weight and choose a planet
+                to discover your weight on another world.
+            </p>
+
+        </div>
+
+
+        <!-- INPUT -->
+        <div class="form-group">
+
+            <label for="earthWeight">
+                YOUR EARTH WEIGHT
+            </label>
+
+            <div class="input-wrapper">
+
+                <input
+                    type="number"
+                    id="earthWeight"
+                    placeholder="Enter weight"
+                    min="0"
+                    step="0.1"
+                >
+
+                <span>kg</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- PLANET SELECT -->
+        <div class="form-group">
+
+            <label for="planetSelect">
+                SELECT PLANET
+            </label>
+
+            <select id="planetSelect">
+
+                <option value="Mercury">Mercury</option>
+                <option value="Venus">Venus</option>
+                <option value="Earth" selected>Earth</option>
+                <option value="Mars">Mars</option>
+                <option value="Jupiter">Jupiter</option>
+                <option value="Saturn">Saturn</option>
+                <option value="Uranus">Uranus</option>
+                <option value="Neptune">Neptune</option>
+
+            </select>
+
+        </div>
+
+
+        <!-- CALCULATE BUTTON -->
+        <button
+            class="calculate-button"
+            id="calculateButton">
+
+            <span>CALCULATE WEIGHT</span>
+
+            <span class="arrow">→</span>
+
+        </button>
+
+
+        <!-- ERROR -->
+        <div
+            class="error-message"
+            id="errorMessage">
+        </div>
+
+
+        <!-- RESULT -->
+        <div class="result-card">
+
+            <div class="result-label">
+                YOUR WEIGHT ON
+            </div>
+
+            <div
+                class="result-planet"
+                id="resultPlanet">
+                Earth
+            </div>
+
+            <div class="result-number">
+
+                <span id="weightResult">0.00</span>
+
+                <small>kg</small>
+
+            </div>
+
+        </div>
+
+
+        <!-- PLANET INFORMATION -->
+        <div class="planet-info">
+
+            <div class="info-header">
+
+                <span>PLANET DATA</span>
+
+                <span class="planet-dot"></span>
+
+            </div>
+
+
+            <h3 id="infoName">
+                Earth
+            </h3>
+
+
+            <div class="gravity">
+
+                <span>
+                    Gravity
+                </span>
+
+                <strong id="gravityValue">
+                    1.00 g
+                </strong>
+
+            </div>
+
+
+            <p id="infoDescription">
+                Our home planet. The perfect reference
+                point for comparing planetary weight.
+            </p>
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <div class="sidebar-footer">
+
+            <div>
+                🖱️ Click a planet to explore
+            </div>
+
+            <div>
+                ✨ Watch the planets orbit
+            </div>
+
+        </div>
+
+    </aside>
+
+</div>
+
+
+
+<!-- =========================
+     SUN POPUP
+========================== -->
+
+<div
+    class="popup-overlay"
+    id="sunPopup">
+
+    <div class="sun-popup">
+
+        <button
+            class="popup-close"
+            id="closeSunPopup">
+            ×
+        </button>
+
+
+        <div class="popup-icon">
+            🔥
+        </div>
+
+
+        <div class="popup-title">
+            OUCH! 😂
+        </div>
+
+
+        <div class="popup-text">
+
+            You don't weigh yourself on the Sun! 🔥
+            <br><br>
+            You'd be <strong>CRISPY</strong> before the
+            calculation finishes! 💀
+
+        </div>
+
+
+        <button
+            class="continue-button"
+            id="continueButton">
+
+            Continue Exploring 🚀
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="./script.js"></script>
+
+</body>
+</html>
